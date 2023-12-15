@@ -16,11 +16,21 @@
 <body>
 	<div class="container">
 		<div th:replace="~{header :: header}"> </div>
+		<div th:if="${status != null}" class="alert alert-success alert-dismissible" role="alert">
+			<!--th:text="${status}"-->
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			<strong>Suceess!</strong> <span th:text="${success}"></span>
+		</div>
+		<div th:if="${failure != null}" class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			<strong>Failure!</strong> <span th:text="${failure}"></span>
+		</div>
 
-		<div class="row d-flex justify-content-center">
+
+		<div class="row">
 			<!--Team - 1 -->
 			<div class="col text-center">
-				<div class="card" style="width: 18rem;">
+				<div class="card" style="width: 20rem;"> <!--style="width: 18rem;"-->
 					<img src="https://flagcdn.com/w320/in.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Team 1</h5>
@@ -30,25 +40,36 @@
 					</div>
 				</div>
 			</div>
-			<!--Choose Team 1-->
 			<div class="col text-center">
-				<h4>Select Team 1</h4>
-				<ul class="list-group" th:each="team: ${teams}">
-					<li class="list-group-item" th:text="${team.name}"></li> <!--class="active" aria-current="true"-->
-				</ul>
-			</div>
+				<div class="row">
+					<!--Choose Team 1-->
+					<div class="col text-center">
+						<h4>Select Team 1</h4>
+						<ul class="list-group" th:each="team: ${teams}">
+							<li class="list-group-item" th:text="${team.name}"></li>
+							<!--class="active" aria-current="true"-->
+						</ul>
+					</div>
 
-			<!--Choose Team 2-->
-			<div class="col text-center">
-				<h4>Select Team 2</h4>
-				<ul class="list-group" th:each="team: ${teams}">
-					<li class="list-group-item" th:text="${team.name}" onclick="teamOne('${team}')"></li>
-					<!--class="active" aria-current="true"-->
-				</ul>
+					<!--Choose Team 2-->
+					<div class="col text-center">
+						<h4>Select Team 2</h4>
+						<ul class="list-group" th:each="team: ${teams}">
+							<li class="list-group-item" th:text="${team.name}" onclick="teamOne('${team}')"></li>
+							<!--class="active" aria-current="true"-->
+						</ul>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<!--Add New Team-->
+					<div class="col text-center">
+						<button type="button" class="btn btn-primary">Add Team</button>
+					</div>
+				</div>
 			</div>
 			<!--Team - 2-->
-			<div class="col text-center">
-				<div class="card" style="width: 18rem;">
+			<div class="col text-center ms-5">
+				<div class="card" style="width: 20rem;"> <!--style="width: 18rem;"-->
 					<img src="https://flagcdn.com/w320/in.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Team 2</h5>
