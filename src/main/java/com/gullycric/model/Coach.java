@@ -2,6 +2,8 @@ package com.gullycric.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -25,7 +27,8 @@ public class Coach {
 	private CoachType coachType;
 
 	private String name;
-
+	
+	@JsonBackReference
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
@@ -37,6 +40,7 @@ public class Coach {
 //	@JoinColumn(name = "teamId") //, nullable = false , , referencedColumnName = "coachs"
 //	private Team team;
 	
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.ALL) //{ CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH }
 	@JoinColumn(name = "teamId") //, nullable = false
 	private Team team;

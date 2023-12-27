@@ -3,6 +3,9 @@ package com.gullycric.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,7 +29,8 @@ public class Team {
 	private String name;
 
 	private String owner;
-
+	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Player> players;
 
@@ -36,13 +40,16 @@ public class Team {
 
 	private String history;
 
+	@JsonBackReference
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "playerId", referencedColumnName = "playerId")
 	private Player captain;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Coach> coachs;
 
+	@JsonBackReference
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "addressId", referencedColumnName = "addressId")
 	private Address address;
